@@ -1,0 +1,18 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(#5e578d, #131a27);
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+}
