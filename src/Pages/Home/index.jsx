@@ -1,5 +1,8 @@
 import './home.css'
 
+import { IconsSocial } from '../../components/Icons-Social';
+import { FaInstagram, FaLinkedin, FaYoutube} from 'react-icons/fa'
+
 export default function Home(){
     return(
         <div className='home-container'>
@@ -31,6 +34,19 @@ export default function Home(){
                     </a>
                 </section>
 
+                <footer>
+                    <IconsSocial url="https://www.linkedin.com/in/curioussdev/" >
+                        <FaLinkedin size={35} color="#FFF"/>
+                    </IconsSocial>
+
+                    <IconsSocial url="https://www.instagram.com/_thebill/" >
+                        <FaInstagram  size={35} color="#FFF"/>
+                    </IconsSocial>
+
+                    <IconsSocial url="https://www.youtube.com/@curiousdev1056" >
+                        <FaYoutube size={35} color="#FFF"/>
+                    </IconsSocial>
+                </footer>
                 
             </main>
         </div>
