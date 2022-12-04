@@ -3,11 +3,14 @@ import './login.css'
 import { Logo } from '../../components/logo'
 import { auth } from '../../services/firebaseConnection';
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     function handleLogin(e){
         e.preventDefault();
@@ -18,11 +21,12 @@ export default function Login() {
         }
 
         signInWithEmailAndPassword(auth, email, password ).then(() => {
-            console.log('USUARIO LOGADO COM SUCESSO')
+            navigate("/admin", {replace: true})
+            
         }).catch(()=>{
-            console.log('DEU ERRO PO')
-        })
-    }
+            console.log('ERRO A O FAZER O SUE LOGIN')
+        });
+    };
 
     return(
         <div className='login-container'>
