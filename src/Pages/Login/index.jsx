@@ -1,7 +1,9 @@
 import { useState } from 'react';
-
 import './login.css'
 import { Logo } from '../../components/logo'
+import { auth } from '../../services/firebaseConnection';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -9,8 +11,17 @@ export default function Login() {
 
     function handleLogin(e){
         e.preventDefault();
-        console.log(email)
-        console.log(password)
+
+        if(email === '' || password === ''){
+            console.log('Preencha todos os campos')
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, email, password ).then(() => {
+            console.log('USUARIO LOGADO COM SUCESSO')
+        }).catch(()=>{
+            console.log('DEU ERRO PO')
+        })
     }
 
     return(
