@@ -1,0 +1,73 @@
+.admin-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0 10px;
+}
+
+.label{
+    color: #FFF;
+    font-weight: medium;
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.container-colors{
+    display: flex;
+    margin: 14px 0;
+    gap: 22px;
+}
+.right{
+    margin-right: 14px;
+}
+.btn-register{
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-register svg{
+    margin-left: 8px;
+}
+
+.title{
+    color: #fff;
+    margin: 28px 0 14 14PX 0;
+}
+.list{
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(36, 36, 36, 0.35);
+    border-radius: 5px;
+    padding: 14px 8px;
+
+}
+
+.btn-delete{
+    border-radius: 3px;
+    border: 1.5px dashed #fff;
+    color: #fff;
+    background-color: rgb(220, 17, 17);
+}
+
+.animate-pop{
+    animation-duration: 0.5s;
+    animation-name: animate-pop;
+}
+
+@keyframes animate-pop {
+    0%{
+        opacity: 0;
+        transform: scale(0.7, 0.7);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
