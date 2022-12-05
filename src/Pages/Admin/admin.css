@@ -49,6 +49,17 @@
 
 }
 
+.preview{
+    margin: 0 0 28px 0;
+    padding: 4px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .btn-delete{
     border-radius: 3px;
     border: 1.5px dashed #fff;
