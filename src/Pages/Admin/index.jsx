@@ -5,7 +5,7 @@ import { Input } from '../../components/Input';
 
 import { MdAddLink } from 'react-icons/md';
 import { FiTrash2 } from 'react-icons/fi'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { db } from "../../services/firebaseConnection";
 
@@ -27,10 +27,32 @@ export default function Admin() {
     const [backgroundColorInput, setBackgroundColorInput] = useState("#f1f1f1");
     const [textColorInput, seTtextColorInput] = useState("#121212");
 
-    async function handleRegister(e){
+    const [links, setLinks] = useState([]);
+
+    useEffect(() => {
+        const linksRef = collection(db, "links"); // selecionando a collection dos dados
+        const queryRef = query(linksRef, orderBy("created_at", "asc")) // escolhendo o primeiro ele,ento e a orden dentro do banco
+
+        const unsub = onSnapshot(queryRef, (snapshot) => {
+            let lista = [];
+
+            snapshot.forEach((doc) => {
+                lista.push({
+                    id: doc.id,
+                    name: doc.data().name,
+                    url: doc.data().url,
+                    bg: doc.data().bg,
+                    color: doc.data().color
+                })
+            })
+            setLinks(lista)
+        });
+    }, [])
+
+    async function handleRegister(e) {
         e.preventDefault()
 
-        if(nameInput === '' || urlInput === '') {
+        if (nameInput === '' || urlInput === '') {
             toast.warn('Preencha todos os campos')
             return;
         }
@@ -42,16 +64,16 @@ export default function Admin() {
             color: textColorInput,
             created_at: new Date(),
         })
-        .then(()=>{
-            setNameInput("")
-            setUrlInput("")
-            console.log("Link Resgistrado com sucesso")    
-            toast.success("Link resgistrado com sucesso")
-        })
-        .catch((error)=>{
-            console.log("Erro ao registrar Link");
-            toast.error("Erro ao registrar Link")
-        })
+            .then(() => {
+                setNameInput("")
+                setUrlInput("")
+                console.log("Link Resgistrado com sucesso")
+                toast.success("Link resgistrado com sucesso")
+            })
+            .catch((error) => {
+                console.log("Erro ao registrar Link");
+                toast.error("Erro ao registrar Link")
+            })
     }
 
     return (
@@ -115,17 +137,21 @@ export default function Admin() {
 
             <h2 className="title">Meus Links</h2>
 
-            <article
-                className="list animate-pop"
-                style={{ backgroundColor: "#000", color: "#fff" }}
-            >
-                <p>Grupo exclusivo no telegram</p>
-                <div>
-                    <button className="btn-delete">
-                        <FiTrash2 size={18} color="#FFF" />
-                    </button>
-                </div>
-            </article>
+            {links.map((item, index) => {
+                return (
+                    <article key={index}
+                        className="list animate-pop"
+                        style={{ backgroundColor: item.bg, color: item.color }}
+                    >
+                        <p>{item.name}</p>
+                        <div>
+                            <button className="btn-delete">
+                                <FiTrash2 size={18} color="#FFF" />
+                            </button>
+                        </div>
+                    </article>
+                )
+            })}
         </div>
     )
 }
