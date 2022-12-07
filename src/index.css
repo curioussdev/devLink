@@ -6,7 +6,7 @@
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(#5e578d, #131a27);
+  background: linear-gradient(#5e578d, hsl(219, 34%, 11%));
   min-height: 100vh;
 }
 
