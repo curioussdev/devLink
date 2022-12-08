@@ -24,7 +24,9 @@ export default function Networks(){
                     setInstagram(snapshot.data().instagram);
                     setYoutube(snapshot.data().youtube);
                 }
-            }) 
+            }).then(()=>{
+                toast.error("Erro ao salvar links!")
+            })
         }
 
         loadLinks();
