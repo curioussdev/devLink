@@ -18,7 +18,7 @@ export default function Networks(){
             const docRef = doc(db, "social", "link")
             getDoc(docRef)
             .then((snapshot) => {
-                console.log(snapshot.data())
+                toast.success("Salvo com sucesso!")
                 if( snapshot.data() !== undefined ){
                     setLinkedin(snapshot.data().linkedin);
                     setInstagram(snapshot.data().instagram);
