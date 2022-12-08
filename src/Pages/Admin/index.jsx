@@ -67,11 +67,11 @@ export default function Admin() {
             .then(() => {
                 setNameInput("")
                 setUrlInput("")
-                console.log("Link Resgistrado com sucesso")
+                //console.log("Link Resgistrado com sucesso")
                 toast.success("Link resgistrado com sucesso")
             })
             .catch((error) => {
-                console.log("Erro ao registrar Link");
+                //console.log("Erro ao registrar Link");
                 toast.error("Erro ao registrar Link")
             })
     }
