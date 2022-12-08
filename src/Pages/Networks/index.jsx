@@ -1,5 +1,5 @@
 import './networks.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input'
 import { MdAddLink } from 'react-icons/md'
@@ -9,10 +9,28 @@ import { setDoc, doc, getDoc} from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 export default function Networks(){
-    const [linkedin, setLinkedin] = useState('');
-    const [instagram, setInstagram] = useState('');
-    const [youtube, setYoutube] = useState('');
+    const [linkedin, setLinkedin] = useState("");
+    const [instagram, setInstagram] = useState("");
+    const [youtube, setYoutube] = useState("");
     
+    useEffect(()=> {
+        async function loadLinks(){
+            const docRef = doc(db, "social", "link")
+            getDoc(docRef)
+            .then((snapshot) => {
+                console.log(snapshot.data())
+                if( snapshot.data() !== undefined ){
+                    setLinkedin(snapshot.data().linkedin);
+                    setInstagram(snapshot.data().instagram);
+                    setYoutube(snapshot.data().youtube);
+                }
+            }) 
+        }
+
+        loadLinks();
+    }, [])
+
+
     async function handleSave(e){
         e.preventDefault()
 
@@ -43,21 +61,21 @@ export default function Networks(){
                 <label className='label'>Link do LinkedIn</label>
                 <Input 
                     placeholder="Digite a url do LinkedIn..."
-                    valeu={linkedin}
+                    value={linkedin}
                     onChange={ (e)=> setLinkedin(e.target.value)}
                 />
 
                 <label className='label'>Link do Instagram</label>
                 <Input 
                     placeholder="Digite a url do Instagram..."
-                    valeu={instagram}
+                    value={instagram}
                     onChange={ (e)=> setInstagram(e.target.value)}
                 />
 
                 <label className='label'>Link do Youtube</label>
                 <Input 
                     placeholder="Digite a url do Youtube..."
-                    valeu={youtube}
+                    value={youtube}
                     onChange={ (e)=> setYoutube(e.target.value)}
                 />
 
