@@ -46,7 +46,7 @@ export default function Home() {
 
                 {links.map((item) => (
                     <section key={item.id} className='link-area' style={{ backgroundColor: item.bg }}>
-                        <a href={item.url}>
+                        <a href={item.url} target="_blank">
                             <p className='link-text' style={{ color: item.color }} >
                                 {item.name}
                             </p>

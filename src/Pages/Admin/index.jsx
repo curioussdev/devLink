@@ -33,7 +33,7 @@ export default function Admin() {
         const linksRef = collection(db, "links"); // selecionando a collection dos dados
         const queryRef = query(linksRef, orderBy("created_at", "asc")) // escolhendo o primeiro ele,ento e a orden dentro do banco
 
-        const unsub = onSnapshot(queryRef, (snapshot) => {
+        onSnapshot(queryRef, (snapshot) => {
             let lista = [];
 
             snapshot.forEach((doc) => {
